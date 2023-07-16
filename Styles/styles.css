@@ -12,3 +12,13 @@
 h1 {
     color: #7a7bed;
 }
+
+.container-contador {
+    background-color: #7a7bed;
+    padding: 1rem;
+    border-radius: 30%;
+    font-size: large;
+    font-weight: bold;
+    color: white;
+    max-width: 70px;
+}
