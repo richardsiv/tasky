@@ -1,4 +1,11 @@
 
+// const myModal = document.getElementById('myModal')
+// const myInput = document.getElementById('myInput')
+
+// myModal.addEventListener('shown.bs.modal', () => {
+//   myInput.focus()
+// })
+
 function obtenerTareas() {
     return localStorage.getItem("tareas") ? JSON.parse(localStorage.getItem("tareas")) : []
 }

@@ -42,7 +42,7 @@
         ></ul>
 
         <div class="col-md-3 text-end">
-          <button class="boton-redondo">+</button>
+          <button class="boton-redondo" data-bs-toggle="modal" data-bs-target="#modalSignin">+</button>
         </div>
       </header>
     </div>
@@ -163,6 +163,41 @@
         </div>
 
       </div>
+
+      <!-- Modal con formulario para agregar tareas -->
+      <div class="modal modal-signin py-5" tabindex="-1" role="dialog" id="modalSignin">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content rounded-4 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+              <h1 class="fw-bold mb-0 fs-2">Tarea</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+              <form id="form-tarea">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control rounded-3" id="titulo-flotante" placeholder="Regar las plantas" required>
+                  <label for="titulo-flotante">Título</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="time" class="form-control rounded-3" id="fecha-inicio" required>
+                  <label for="fecha-inicio">Hora de inicio</label>
+                </div>
+                <div class=" form-floating mb-3">
+                  <input type="time" class="form-control rounded-3" id="fecha-fin" required>
+                  <label for="fecha-fin">Hora de culminación</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="date" class="form-control rounded-3" id="fecha" required>
+                  <label for="fecha-fin">Fecha</label>
+                </div>
+                <button class="w-100 mb-2 btn btn-lg rounded-3 btn-warning" type="submit">Agregar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </main>
 
     <!-- Pie de página -->
