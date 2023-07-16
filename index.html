@@ -42,7 +42,7 @@
         ></ul>
 
         <div class="col-md-3 text-end">
-          <button class="boton-redondo" data-bs-toggle="modal" data-bs-target="#modalSignin">+</button>
+          <button class="boton-redondo" data-bs-toggle="modal" data-bs-target="#modalFormLista">+</button>
         </div>
       </header>
     </div>
@@ -124,48 +124,13 @@
         </div>
 
         <!-- Lista -->
-        <div class="list-group w-auto">
-          <p class="mt-sm-0 mt-md-1">16/07/2023</p>
-          <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" value="" checked style="font-size: 1.375em;">
-            <span class="pt-1 form-checked-content">
-              <strong>Finish sales report</strong>
-              <small class="d-block text-muted">
-                <i class="bi bi-calendar-event-fill"></i>
-                1:00–2:00pm
-              </small>
-            </span>
-          </label>
-          <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-            <span class="pt-1 form-checked-content">
-              <strong>Weekly All Hands</strong>
-              <small class="d-block text-muted">
-                <i class="bi bi-calendar-event-fill"></i>
-                2:00–2:30pm
-              </small>
-            </span>
-          </label>
-        </div>
-
-        <div class="list-group w-auto">
-          <p class="mt-sm-0 mt-md-1">17/07/2023</p>
-          <label class="list-group-item d-flex gap-3">
-            <input class="form-check-input flex-shrink-0" type="checkbox" value="" style="font-size: 1.375em;">
-            <span class="pt-1 form-checked-content">
-              <strong>Out of office</strong>
-              <small class="d-block text-muted">
-                <i class="bi bi-alarm"></i>
-                Tomorrow
-              </small>
-            </span>
-          </label>
+        <div id="grupo-listas">
         </div>
 
       </div>
 
       <!-- Modal con formulario para agregar tareas -->
-      <div class="modal modal-signin py-5" tabindex="-1" role="dialog" id="modalSignin">
+      <div class="modal modal-signin py-5" tabindex="-1" role="dialog" id="modalFormLista">
         <div class="modal-dialog" role="document">
           <div class="modal-content rounded-4 shadow">
             <div class="modal-header p-5 pb-4 border-bottom-0">
@@ -176,8 +141,8 @@
             <div class="modal-body p-5 pt-0">
               <form id="form-tarea">
                 <div class="form-floating mb-3">
-                  <input type="text" class="form-control rounded-3" id="titulo-flotante" placeholder="Regar las plantas" required>
-                  <label for="titulo-flotante">Título</label>
+                  <input type="text" class="form-control rounded-3" id="titulo" placeholder="Regar las plantas" required>
+                  <label for="titulo">Título</label>
                 </div>
                 <div class="form-floating mb-3">
                   <input type="time" class="form-control rounded-3" id="fecha-inicio" required>
@@ -189,7 +154,7 @@
                 </div>
                 <div class="form-floating mb-3">
                   <input type="date" class="form-control rounded-3" id="fecha" required>
-                  <label for="fecha-fin">Fecha</label>
+                  <label for="fecha">Fecha</label>
                 </div>
                 <button class="w-100 mb-2 btn btn-lg rounded-3 btn-warning" type="submit">Agregar</button>
               </form>
@@ -197,7 +162,7 @@
           </div>
         </div>
       </div>
-      
+
     </main>
 
     <!-- Pie de página -->
