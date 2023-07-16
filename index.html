@@ -1,36 +1,106 @@
 <html>
-<head>
+  <head>
     <title>Tasky - Maneja tus tareas</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" href="Resources/tasky.png" type="png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/Styles/styles.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="/Controllers/main.js" type="module"></script>
-</head>
-<body>
+  </head>
+  <body>
+    <!-- Barra de navegación -->
     <div class="container">
+      <header
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+        >
+          <img
+            src="/Resources/tasky.png"
+            width="40"
+            height="45"
+            alt="Tasky Logo"
+          />
+        </a>
+
+        <ul
+          class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"
+        ></ul>
+
+        <div class="col-md-3 text-end">
+          <button class="boton-redondo">+</button>
+        </div>
+      </header>
+    </div>
+
+    <!-- Cabecera -->
+    <div class="container col-xxl-8 px-4 py-0 py-md-5 ">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-0 py-md-5">
+        <div class="col-12 col-sm-8 col-lg-6">
+          <img
+            src="/Resources/header.jpg"
+            class="d-block mx-lg-auto img-fluid"
+            alt="Bootstrap Themes"
+            width="700"
+            height="500"
+            loading="lazy"
+          />
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">
+            Maneja tus tareas de forma facil
+          </h1>
+          <p class="lead">
+            Con Tasky puedes administrar tus ideas y hacerlas realidad gracias a
+            la gestión de tareas que te ofrecemos, contamos con un diseño
+            responsive, por lo que puedes utilizar Tasky en cualquier
+            dispositivo.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="container">
         <h1>Tasky - Web de gestión de tareas</h1>
         <!-- Formulario para crear una nueva tarea -->
         <form id="form-tarea">
-            <div class="form-group">
-                <label for="tarea">Tarea</label>
-                <input type="text" class="form-control" id="tarea" placeholder="Regar las plantas" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Crear tarea</button>
+          <div class="form-group">
+            <label for="tarea">Tarea</label>
+            <input
+              type="text"
+              class="form-control"
+              id="tarea"
+              placeholder="Regar las plantas"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Crear tarea</button>
         </form>
         <!-- Tabla para mostrar las tareas existentes -->
         <table class="table table-striped mt-4">
-            <thead>
-                <tr>
-                    <th>Tarea</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody id="tabla-tareas">
-
-            </tbody>
+          <thead>
+            <tr>
+              <th>Tarea</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-tareas"></tbody>
         </table>
-    </div>
-
-</body>
+      </div>
+    </main>
+  </body>
 </html>
