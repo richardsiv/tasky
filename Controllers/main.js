@@ -1,6 +1,9 @@
 // Modal
 const modal = new bootstrap.Modal('#modalFormLista', {})
 
+let esEditar = false;
+let idTareaEditar = 0;
+
 function obtenerTareas() {
   return localStorage.getItem("tareas")
     ? JSON.parse(localStorage.getItem("tareas"))
@@ -40,6 +43,20 @@ function ordenarTareas(tareas) {
   return resultado;
 }
 
+function generarHex() {
+  let n = Math.floor(Math.random() * 65536);
+  let s = n.toString(16).padStart(4, "0");
+  return s;
+}
+
+function generarId() {
+  let s1 = generarHex();
+  let s2 = generarHex();
+  let s3 = generarHex();
+  let s4 = generarHex();
+  let id = s1 + "-" + s2 + "-" + s3 + "-" + s4;
+  return id;
+}
 
 function mostrarTareas() {
   let tareas = obtenerTareas();
@@ -64,9 +81,9 @@ function mostrarTareas() {
               ${tareaEspecifico.fecha.horaInicio} – ${tareaEspecifico.fecha.horaFin}
             </small>
           </span>
-          <div class="ms-auto p-2 d-flex flex-nowrap ">
-            <i class="bi bi-pencil p-2" style="color: #ffc107;"></i>
-            <i class="bi bi-x-lg p-2" style="color: red;"></i>
+          <div class="ms-auto p-2 d-flex flex-nowrap">
+            <i class="bi bi-pencil p-2" style="color: #ffc107;" id="edit_${tareaEspecifico.id}"></i>
+            <i class="bi bi-x-lg p-2" style="color: red;" id="delete_${tareaEspecifico.id}"></i>
           </div>
         </label>
       `;
@@ -89,6 +106,7 @@ function crearTarea(titulo, fecha) {
   let tareas = obtenerTareas();
 
   let tarea = {
+    id: generarId(),
     titulo,
     fecha,
   };
@@ -100,28 +118,43 @@ function crearTarea(titulo, fecha) {
   modal.hide()
 }
 
-function editarTarea(indice) {
+function editarTarea(id) {
   let tareas = obtenerTareas();
-  let tarea = tareas[indice];
-  let nuevoTitulo = prompt("Ingresa tu tarea", tarea.tarea);
-  if (nuevoTitulo) {
-    tarea.tarea = nuevoTitulo;
-    guardarTareas(tareas);
-    mostrarTareas();
-  }
+  let tarea = tareas.filter((tarea) => tarea.id === id)[0];
+  $("#titulo").val(tarea.titulo);
+  $("#fecha-inicio").val(tarea.fecha.horaInicio);
+  $("#fecha-fin").val(tarea.fecha.horaFin);
+  $("#fecha").val(tarea.fecha.dia);
+  esEditar = true;
+  idTareaEditar = id;
+  modal.show();
 }
 
-function eliminarTarea(indice) {
+function eliminarTarea(id) {
   let tareas = obtenerTareas();
+
+  const tareasFiltradas = tareas.filter((tarea) => tarea.id !== id)
+
   if (confirm("¿Estás seguro de que quieres eliminar esta tarea?")) {
-    tareas.splice(indice, 1);
-    guardarTareas(tareas);
+    guardarTareas(tareasFiltradas);
     mostrarTareas();
   }
 }
 
 $(document).ready(function () {
   mostrarTareas();
+});
+
+$(document).on("click", ".bi-pencil", function (e) {
+  e.stopPropagation();
+  let id = $(this).attr("id");
+  editarTarea(id.split('_')[1]);
+});
+
+$(document).on("click", ".bi-x-lg", function (e) {
+  e.stopPropagation();
+  let id = $(this).attr("id");
+  eliminarTarea(id.split('_')[1]);
 });
 
 $("#form-tarea").submit(function (event) {
@@ -132,9 +165,33 @@ $("#form-tarea").submit(function (event) {
     horaInicio: $("#fecha-inicio").val(),
     horaFin: $("#fecha-fin").val(),
   };
-  crearTarea(titulo, fecha);
+  if (esEditar) {
+    guardarTareaEditada(idTareaEditar, titulo, fecha)
+  } else {
+    crearTarea(titulo, fecha);
+  }
   limpiarInputs()
 });
+
+function guardarTareaEditada(id, titulo, fecha) {
+  let tareas = obtenerTareas();
+
+  let tarea = tareas.map((t) => {
+    let tareaAEditar = t
+    if (t.id === id) {
+      tareaAEditar.titulo = titulo;
+      tareaAEditar.fecha = fecha;
+    }
+    return tareaAEditar
+  })
+
+  guardarTareas(tarea);
+  mostrarTareas();
+  modal.hide();
+
+  esEditar = false;
+  idTareaEditar = 0;
+}
 
 $("#modalFormLista").on("hidden.bs.modal", function () {
   limpiarInputs();
